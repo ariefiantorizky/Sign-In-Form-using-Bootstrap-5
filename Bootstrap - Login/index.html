@@ -1,0 +1,107 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="shortcut icon" href="/src/images/logo.png" type="image/x-icon">
+</head>
+
+<body class="d-flex justify-content-center align-items-center">
+    <form action="#" target="_blank" class="card p-2 mx-auto" style="width: 24rem; height: max-content">
+        <img src="/src/images/logo.png" class="card-img-top mx-auto" style="width: 8rem;">
+
+        <!-- VALIDATION ALERT -->
+        <div class="alert alert-danger d-none" role="alert">
+            Please! Input your data...
+        </div>
+        <div class="alert alert-success d-none" role="alert">
+            Success! Welcome back <span id="user">User</span>...
+        </div>
+        <!-- VALIDATION ALERT -->
+
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="mail" class="form-label">Email</label>
+                <input class="form-control" id="mail" type="email" placeholder="jhondoe@gmail.com" aria-label="Email">
+            </div>
+            <div class="mb-3">
+                <label for="pw" class="form-label">Password</label>
+                <input class="form-control" id="pw" type="password" placeholder="********" aria-label="Password">
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                    Remind me
+                </label>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary w-full">Sign In</button>
+                <button class="btn btn-primary d-none btn-loading" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Processed...
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+
+    <script src="/public/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        // VALIDATION
+
+        document.querySelector("form").addEventListener("submit", (e) => {
+            e.preventDefault()
+
+
+            const mail = document.querySelector("#mail");
+            const pass = document.querySelector("#pw");
+            const alert = document.querySelector(".alert-danger");
+            const success = document.querySelector(".alert-success");
+            const btn = document.querySelector(".btn-primary");
+            const btnLoading = document.querySelector(".btn-loading");
+
+
+            // saat sudah muncul maka divalidasi
+            if (mail.value == "" && pass.value == "") {
+                alert.classList.remove("d-none");
+                btnLoading.classList.add("d-none")
+                btn.classList.remove("d-none");
+            }
+
+            // validasi ketika input sudah benar
+            if (mail.value !== "" && pass.value !== "") {
+
+                document.querySelector("#user").innerHTML = mail.value
+
+                success.classList.remove("d-none");
+                alert.classList.add("d-none");
+
+                btn.classList.add("d-none");
+                btnLoading.classList.remove("d-none");
+
+                setTimeout(() => {
+                    window.open("https://www.google.com/", "_self");
+
+                    btn.classList.remove("d-none");
+                    btnLoading.classList.add("d-none");
+                }, 3000)
+            }
+
+
+
+
+
+
+
+        })
+    </script>
+
+</body>
+
+</html>
